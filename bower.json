@@ -1,0 +1,20 @@
+{
+  "name": "ng-oboe",
+  "version": "0.0.0",
+  "authors": [
+    "Jedd Ahyoung <jedd.ahyoung@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.2.25",
+    "oboe": "~1.15.1"
+  }
+}
