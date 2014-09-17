@@ -4,36 +4,40 @@ angular.module('ng-oboe', [])
 
 		var oboe = function () {
 			var configDefaults = {
-				url: ''
-				method: 'GET'
-				headers: {}
-				body: ''
-				cached: false
+				url: '',
+				method: 'GET',
+				headers: {},
+				body: null,
+				cached: false,
 				withCredentials: false
 			};
 
-			var get = function (url, config) {
-				return new Oboe({});
-			};
-			var post = function (url, data, config) {
-				return new Oboe({});
-			};
-			var put = function (url, data, config) {
-				return new Oboe({});
-			};
-			var patch = function (url, data, config) {
-				return new Oboe({});
-			};
-			var del = function (url, config) {
-				return new Oboe({});
+			var request = function (url, data, config, method) {
+				var params = config || configDefaults; // TODO: Merge these two.
+				params.method = method;
+				params.body = data;
+				params.url = url;
+				return new Oboe(params);
 			};
 
+			// TODO: Wrap oboe methods in angular parameters that update digest and return that object.
+
 			return {
-				get: get,
-				post: post,
-				put: put,
-				patch: patch,
-				"delete": del
+				get: function (url, config) {
+					return request(url, null, config, 'GET');
+				},
+				post: function (url, data, config) {
+					return request(url, data, config, 'POST');
+				},
+				put: function (url, data, config) {
+					return request(url, data, config, 'PUT');
+				},
+				patch: function (url, data, config) {
+					return request(url, data, config, 'PATCH');
+				},
+				"delete": function (url, config) {
+					return request(url, null, config, 'DELETE');
+				}
 			};
 		};
 
