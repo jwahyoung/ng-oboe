@@ -18,7 +18,7 @@ angular.module('ng-oboe', [])
 
 				// TODO: Wrap oboe methods in angular parameters that update digest and return that object.
 
-				return new oboe(params);
+				return oboe(params);
 			};
 
 			return {
