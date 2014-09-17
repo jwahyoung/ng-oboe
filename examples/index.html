@@ -3,12 +3,16 @@
 
 	<title>NG-Oboe</title>
 
-	<script src="/js/lib/oboe/dist/oboe-browser.min.js"></script>
-	<script src="/js/lib/angularjs/angular.min.js"></script>
-	<script src="/js/app/app.js"></script>
+	<script src="../lib/oboe/dist/oboe-browser.min.js"></script>
+	<script src="../lib/angularjs/angular.min.js"></script>
+	<script src="../src/ng-oboe.js"></script>
+	<script src="index.js"></script>
 
 </head>
 <body data-ng-controller="myCtrl">
-	{{test}}
+	<p>{{test}}</p>
+	<ul data-ng-repeat="item in items">
+		<li>{{item.id}}: {{item.name}}</li>
+	</ul>
 </body>
 </html>

@@ -9,16 +9,16 @@ angular.module('ng-oboe', [])
 			withCredentials: false
 		};
 
-		var oboe = function () {}
+		var ngOboe = function () {
 			var request = function (url, data, config, method) {
-				var params = config || configDefaults; // TODO: Merge these two.
+				var params = config || defaults; // TODO: Merge these two.
 				params.method = method;
 				params.body = data;
 				params.url = url;
 
 				// TODO: Wrap oboe methods in angular parameters that update digest and return that object.
 
-				return new Oboe(params);
+				return new oboe(params);
 			};
 
 			return {
@@ -41,5 +41,5 @@ angular.module('ng-oboe', [])
 		};
 
 		this.defaults = defaults;
-		this.$get = oboe;
+		this.$get = ngOboe;
 	});
