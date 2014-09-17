@@ -1,26 +1,25 @@
 angular.module('ng-oboe', [])
 	.provider('oboe', function () {
-		// TODO: Add defaults.
+		var defaults = {
+			url: '',
+			method: 'GET',
+			headers: {},
+			body: null,
+			cached: false,
+			withCredentials: false
+		};
 
-		var oboe = function () {
-			var configDefaults = {
-				url: '',
-				method: 'GET',
-				headers: {},
-				body: null,
-				cached: false,
-				withCredentials: false
-			};
-
+		var oboe = function () {}
 			var request = function (url, data, config, method) {
 				var params = config || configDefaults; // TODO: Merge these two.
 				params.method = method;
 				params.body = data;
 				params.url = url;
+
+				// TODO: Wrap oboe methods in angular parameters that update digest and return that object.
+
 				return new Oboe(params);
 			};
-
-			// TODO: Wrap oboe methods in angular parameters that update digest and return that object.
 
 			return {
 				get: function (url, config) {
@@ -41,6 +40,7 @@ angular.module('ng-oboe', [])
 			};
 		};
 
+		this.defaults = defaults;
 		this.$get = oboe;
 	});
 
