@@ -9,9 +9,15 @@ angular.module('myApp', ['ng-oboe'])
 		$scope.items = [];
 
 		oboe.get('test.json')
+			.start(function (data, etc) {
+				console.log("Dude! We're goin'!", data, etc);
+			})
 			.node('items.*', function (value) {
 				// Calling $scope.$apply won't be necessary after wrapping these functions.
 				$scope.items.push(value);
+			})
+			.done(function (value) {
+				console.log("It works! ", value);
 			})
 			.fail(function (error) {
 				console.log("Error: ", error);

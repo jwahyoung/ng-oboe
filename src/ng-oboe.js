@@ -17,7 +17,7 @@ angular.module('ng-oboe', [])
 						var args = arguments;
 
 						return $rootScope.$apply(function () {
-							return callback.apply(null, args);
+							return callback.apply(null, args); // Null as this may cause issues.
 						});
 					}
 
@@ -25,12 +25,27 @@ angular.module('ng-oboe', [])
 				};
 
 				return {
+					start: function (callback) {
+						return on('start', callback);
+					},
 					node: function (pattern, callback) {
 						return on('node', pattern, callback);
 					},
+					path: function (pattern, callback) {
+						return on('path', pattern, callback);
+					},
+					success: function (callback) {
+						return on('done', callback);
+					},
 					done: function (callback) {
 						return on('done', callback);
-					}
+					},
+					error: function (callback) {
+						return on('fail', callback);
+					},
+					fail: function (callback) {
+						return on('fail', callback);
+					},
 				};
 			};
 
