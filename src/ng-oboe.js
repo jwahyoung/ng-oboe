@@ -9,7 +9,31 @@ angular.module('ng-oboe', [])
 			withCredentials: false
 		};
 
-		var ngOboe = function () {
+		var ngOboe = function ($rootScope, $timeout) {
+			function oboeWrapper(params) {
+				var stream = oboe(params);
+				var on = function (event, pattern, callback) {
+					function wrappedCallback () {
+						var args = arguments;
+
+						return $rootScope.$apply(function () {
+							return callback.apply(null, args);
+						});
+					}
+
+					return stream.on(event, pattern, wrappedCallback);
+				};
+
+				return {
+					node: function (pattern, callback) {
+						return on('node', pattern, callback);
+					},
+					done: function (callback) {
+						return on('done', callback);
+					}
+				};
+			};
+
 			var request = function (url, data, config, method) {
 				var params = config || defaults; // TODO: Merge these two.
 				params.method = method;
@@ -18,7 +42,7 @@ angular.module('ng-oboe', [])
 
 				// TODO: Wrap oboe methods in angular parameters that update digest and return that object.
 
-				return oboe(params);
+				return oboeWrapper(params);
 			};
 
 			return {
