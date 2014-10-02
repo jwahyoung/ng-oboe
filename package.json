@@ -1,0 +1,32 @@
+{
+  "name": "ng-oboe",
+  "version": "0.0.0",
+  "description": "An AngularJS wrapper for Oboe.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "gulp": "~3.8.8"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jedd-ahyoung/ng-oboe"
+  },
+  "keywords": [
+    "angular",
+    "oboe"
+  ],
+  "author": "Jedd Ahyoung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jedd-ahyoung/ng-oboe/issues"
+  },
+  "homepage": "https://github.com/jedd-ahyoung/ng-oboe"
+}
