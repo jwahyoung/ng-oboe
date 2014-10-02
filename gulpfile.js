@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var uglify = require('gulp-uglify');
 
 gulp.task('default', function () {
 	console.log("Default task.");
@@ -13,5 +14,7 @@ gulp.task('lint', function () {
 });
 
 gulp.task('uglify', function () {
-
+	gulp.src('./src/*.js')
+		.pipe(uglify())
+		.pipe(gulp.dest('./dist/'));
 });
