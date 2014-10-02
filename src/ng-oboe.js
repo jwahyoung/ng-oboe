@@ -47,7 +47,7 @@ angular.module('ng-oboe', [])
 						return on('fail', callback);
 					},
 				};
-			};
+			}
 
 			var request = function (url, data, config, method) {
 				var params = config || defaults; // TODO: Merge these two.
