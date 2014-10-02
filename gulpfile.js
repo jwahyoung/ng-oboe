@@ -3,10 +3,6 @@ var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var rm = require('del');
 
-gulp.task('default', function () {
-	console.log("Default task.");
-});
-
 gulp.task('lint', function () {
 	gulp.src('src/*.js')
 		.pipe(jshint())
