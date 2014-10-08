@@ -9,7 +9,7 @@ angular.module('ng-oboe', [])
 			withCredentials: false
 		};
 
-		var ngOboe = function ($rootScope, $timeout) {
+		var ngOboe = function ($rootScope) {
 			function oboeWrapper(params) {
 				var stream = oboe(params);
 				var on = function (event, pattern, callback) {
@@ -80,5 +80,6 @@ angular.module('ng-oboe', [])
 		};
 
 		this.defaults = defaults;
+		ngOboe.$inject = ['$rootScope'];
 		this.$get = ngOboe;
 	});
