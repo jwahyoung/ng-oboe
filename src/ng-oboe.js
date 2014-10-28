@@ -12,21 +12,23 @@ angular.module('ng-oboe', [])
 		var ngOboe = function ($rootScope) {
 			function oboeWrapper(params) {
 				var stream = oboe(params);
+				var singleArgMethods = ['start', 'done', 'fail'];
 				var on = function (event, pattern, callback) {
-					function wrappedCallback () {
+					var wrappedCallback = function () {
 						var args = arguments;
 
-						return $rootScope.$apply(function () {
-							return callback.apply(null, args); // Null as this may cause issues.
+						return $rootScope.$evalAsync(function () {
+							return callback.apply(stream, args);
 						});
 					}
 
-					return stream.on(event, pattern, wrappedCallback);
+					return singleArgMethods.indexOf(event) >= 0 ? stream.on(event, wrappedCallback)
+						: stream.on(event, pattern, wrappedCallback);
 				};
 
 				return {
 					start: function (callback) {
-						return on('start', callback);
+						return on('start', null, callback);
 					},
 					node: function (pattern, callback) {
 						return on('node', pattern, callback);
@@ -35,16 +37,16 @@ angular.module('ng-oboe', [])
 						return on('path', pattern, callback);
 					},
 					success: function (callback) {
-						return on('done', callback);
+						return on('done', null, callback);
 					},
 					done: function (callback) {
-						return on('done', callback);
+						return on('done', null, callback);
 					},
 					error: function (callback) {
-						return on('fail', callback);
+						return on('fail', null, callback);
 					},
 					fail: function (callback) {
-						return on('fail', callback);
+						return on('fail', null, callback);
 					},
 				};
 			}
