@@ -6,7 +6,7 @@ An Angular wrapper for Jim Higson's [oboe.js](https://github.com/jimhigson/oboe.
 Usage:
 ------
 
-To use ng-oboe, add the 'ng-oboe' module as an an app dependency.
+To use ng-oboe, add the 'ng-oboe' module as an app dependency.
 
 	angular.module('myApp', ['ng-oboe'])
 
